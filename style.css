@@ -1,0 +1,134 @@
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.container{
+    background-color: blanchedalmond;
+    border-radius: 10px;
+    padding: 40px;
+    width: 500px;
+}
+
+.registration{
+    font-family: "Protest Guerrilla", sans-serif;
+    font-weight: normal;
+    margin-bottom: 20px;
+    text-align: center;
+    counter-reset: my-counter;
+}
+
+ul{
+    display: flex;
+    justify-content: space-between;
+    counter-reset: my-counter;
+    position: relative;
+    z-index: 5;
+}
+
+li{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    counter-increment: my-counter;
+    flex: 1;
+    color: #bcbcc2;
+}
+li::before{
+    content: counter(my-counter);
+    background-color: #bcbcc2; /*  211C84*/
+    color: white;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-inner{
+    position: relative;
+}
+
+.form-inner::before{
+    content: "";
+    height: 4px;
+    width: calc((4 - 1) / 4 * 100%);
+    background-color: #bcbcc2;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+.form-inner .progress{
+    content: "";
+    height: 4px;
+    width: calc((4 - 1) / 4 * 100%);
+    background-color: #211C84;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: 4;
+    transform-origin: left;
+    transition: .3s;
+    transform: scaleX(0%);
+}
+
+.form-inner li:where(.done, .current){
+    color: black;
+    font-weight: 500;
+}
+.form-inner li.done::before{
+    background-color: #211C84;
+}
+.form-inner li.current::before{
+    background-color: #211C84;
+    box-shadow: 0 0 0 3px #7c81ce;
+}
+
+.controls{
+    display: flex;
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.controls button{
+    background-color: #211C84;
+    color: white;
+    border: none;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    flex: 1;
+}
+
+.prev{
+    background-color: #7c81ce !important;
+}
+.submit{
+    background-color: #0fc6df !important;
+}
+
+.data-container{
+    display: flex;
+    overflow: hidden;
+}
+
+.data{
+    flex: 1 0 100%;
+    padding: 24px 8px;
+}

@@ -104,7 +104,6 @@ li::before{
 .controls{
     display: flex;
     gap: 2rem;
-    margin-top: 4rem;
 }
 
 .controls button{
@@ -123,12 +122,33 @@ li::before{
     background-color: #0fc6df !important;
 }
 
-.data-container{
+.step-container{
     display: flex;
     overflow: hidden;
 }
 
-.data{
+.step{
     flex: 1 0 100%;
     padding: 24px 8px;
+    opacity: 0;
+    transition: opacity .5s;
+    height: fit-content;
+}
+
+.step.current{
+    opacity: 1;
+}
+
+input, textarea{
+    display: block;
+    outline: none;
+    font-size: 1rem;
+    padding: .5rem;
+    margin: .5rem 0;
+    border-radius: 50px;
+    border: 2px solid black;
+}
+
+label{
+    margin: .5rem;
 }

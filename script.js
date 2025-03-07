@@ -1,12 +1,12 @@
-const stepIndicator = document.querySelectorAll(".form-inner li")
-const progress = document.querySelector(".progress")
-const prevBtn = document.querySelector(".prev")
-const nextBtn = document.querySelector(".next")
-const submitBtn = document.querySelector(".submit")
-const steps = document.querySelectorAll(".step")
-const stepsContainer = document.querySelector(".step-container")
-
-
+const form = document.querySelector(".form")
+const inputs = form.querySelectorAll("input, textarea")
+const stepIndicator = form.querySelectorAll(".form-inner li")
+const progress = form.querySelector(".progress")
+const prevBtn = form.querySelector(".prev")
+const nextBtn = form.querySelector(".next")
+const submitBtn = form.querySelector(".submit")
+const steps = form.querySelectorAll(".step")
+const stepsContainer = form.querySelector(".step-container")
 
 
 let currStep = 0
@@ -41,6 +41,25 @@ const validStep = ()=> {
     return [...fields].every((field) => field.reportValidity())
 }
 
+inputs.forEach(input => {
+    input.addEventListener("focus", function (e) {
+        if(!validStep()) return;
+        const focusedInput = e.target
+        const focusedStep = [...steps].findIndex(step => {
+            return step.contains(focusedInput)
+        })
+        
+        if (focusedStep !== -1 && focusedStep !== currStep) {
+            currStep = focusedStep
+            updateProgress()
+        }
+        
+        stepsContainer.scrollTop = 0
+        stepsContainer.scrollLeft = 0
+
+    })
+})
+
 prevBtn.addEventListener("click", function (e) {
     e.preventDefault()
 
@@ -52,8 +71,9 @@ prevBtn.addEventListener("click", function (e) {
 
 nextBtn.addEventListener("click", function (e) {
     e.preventDefault()
+    
 
-    if(!validStep()) return;
+    if(!validStep()) return;    
 
     if (currStep < stepIndicator.length - 1) {
         currStep++
@@ -61,3 +81,20 @@ nextBtn.addEventListener("click", function (e) {
     }
 })
 updateProgress()
+
+form.addEventListener("submit", (e)=> {
+    e.preventDefault()
+
+    if (!form.checkValidity()) return
+
+    const formData = new FormData(form)
+    console.log(Object.fromEntries(formData))
+
+    submitBtn.disabled = true
+    submitBtn.textContent = "Submitting..."
+    
+    setTimeout(() => {
+        form.querySelector(".completed").hidden = false
+    }, 3000);
+    
+})

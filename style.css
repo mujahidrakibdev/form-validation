@@ -113,6 +113,7 @@ li::before{
     padding: .5rem 1rem;
     border-radius: 1rem;
     flex: 1;
+    cursor: pointer;
 }
 
 .prev{
@@ -147,8 +148,26 @@ input, textarea{
     margin: .5rem 0;
     border-radius: 50px;
     border: 2px solid black;
+    width: 100%;
 }
 
 label{
     margin: .5rem;
+}
+
+.step-container h3{
+    text-align: center;
+}
+
+.completed{
+    text-align: center;
+}
+.completed svg{
+    width: 100px;
+    margin: 3rem;
+    color: #59df76;
+}
+
+.completed:not([hidden]) ~ *{
+    display: none;
 }

@@ -10,6 +10,10 @@ body{
     justify-content: center;
     align-items: center;
     font-family: "Roboto", sans-serif;
+    background-image: url(Multy\ Step\ Form\ BG.webp);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .container{
